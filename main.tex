@@ -1,17 +1,42 @@
-\documentclass[11pt]{article}
+\documentclass[12pt]{article}
 
 % ================================================================
 % ================================================================
 % PREAMBLE
+\usepackage[utf8]{inputenc}
 \usepackage[top=1in, bottom=1in, left=1in, right=1in]{geometry}
 \usepackage{setspace}
+\usepackage{microtype}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{lastpage}
 \usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{booktabs}
+\usepackage{todonotes}
+\usepackage{fontspec}
+\usepackage[backend=biber, style=apa, citestyle=apa]{biblatex}
 
-\hypersetup{colorlinks, linkcolor=blue}
+\setmainfont{Caladea}
+\addbibresource{references.bib}
+
+\hypersetup{
+    colorlinks = true,
+    linkcolor  = blue,
+    urlcolor   = blue,
+    citecolor  = blue,
+    }
+    
+\pagestyle{fancy}
+
+\fancyhf{}
+\headheight = 28pt
+\chead{20 YEARS OF DOLLARIZATION IN ECUADOR\\
+       \textit{Nicolás Cachanosky and John Ramseur}}
+
 
 \title{20 Years of Dollarization in Ecuador: A Synthetic Control Analysis}
 
-\author{Nicolás Cachanosky\thanks{Department of Economics, Metropolitan State University of Denver, Denver, CO 80217. E- mail: \href{mailto:ncachano@msudenver.edu}{ncachano@msudenver.edu}.}}
+\author{Nicolás Cachanosky\thanks{Department of Economics, Metropolitan State University of Denver. E-mail: \href{mailto:ncachano@msudenver.edu}{ncachano@msudenver.edu}.} \and John Ramseur\thanks{Department of Economics, Metropolitan State University of Denver, E-mail: \href{mailto:jramseur@msudenver.edu}{jramseur@msudenver.edu}.}}
 
 \date{\today}
 
@@ -19,8 +44,6 @@
 % ================================================================
 % DOCUMENT
 \begin{document}
-
-\doublespacing
 
 % ================================================================
 % TITLE PAGE
@@ -32,19 +55,61 @@
 This paper uses a Synthetic Control Analysis to examine the economic effectiveness of dollarization in Ecuador. We address common concerns surrounding the adoption of dollarization as a policy and provide several solutions to those concerns. We find that dollarization resulted in significant higher levels of income without clear evidence of worsening in social health variables such as infant mortality, poverty, and income distribution.
 \end{abstract}
 
+\footnotesize \noindent \textbf{JEL codes}: E42; E50; O43 \\
+\footnotesize \noindent \textbf{Keywords}: Ecuador, dollarization, synthetic control analysis
+
 \newpage
+\doublespacing
 
 % ================================================================
 % SECTION 1: INTRODUCTION
 \section{Introduction} 
+    \label{sec:intro}
 
+Twenty years ago, in 2000, Ecuador dollarized its economy in the middle of an inflationary crisis. The case of Ecuador is relevant for other countries with troubled currencies, such as Argentina or Venezuela. Besides also being located in Latin America, Ecuador is a larger economy in the region, providing a different case study to those of small dollarized economies such as El Salvador or Panamá. 
+
+The benefits and costs of dollarization was a debated topic at the turn of the century, when Ecuador and Argentina followed different path. The former dollarized its economy. The latter refused the option and faced one of its largest economic crisis in 2001. Despite the major reform that dollarization entails, policy discussion remained mostly speculative. 
+
+Even though history offers more than hundred cases of dollarization \parencite{Schuler2005}, usable data for typical regression analysis remains limited. Maybe this is a reason why the discussion surrounding dollarization has remained highly speculative \parencite[for a sample see][]{Levy-Yeyati2002,Salvatore2003}. Sachs and Larrain \parencite*{Sachs1999} offer a good representation of those who oppose to dollarization arguing that it is a "reckless" (p. 80) straitjacket. Yet, other scholars consider that dollarization can be a good reform for countries with troubled currencies  \parencite{Avila2018,Cochrane2018,Gale2002,Hanke2003a,White2014a} 
+
+Previous work on Ecuador's dollarization looks at issues such as the loss of seigniorage \parencite{Lange2005}, its effects on fiscal policy \parencite{MariDelCristo2016}, or how feasible it is to de-dollarize Ecuador \parencite{JAMESON2003}. In addition, Jansen and Ortiz \parencite*{Jansen2007} find that the probability of large negative returns in stocks decreased post dollarization while that of positive returns increased. This paper complements the studies on Ecuador's dollarization with the novel application of a synthetic control analysis (SCA) \parencite{Abadie,Abadie2003,Abadie2015}. This method allows building the counterfactual of a non-dollarized synthetic-Ecuador. By doing this, we can compare how the economy of dollarized Ecuador compares with the economy of had Ecuador not dollarized. We find that GDP per capita of dollarized Ecuador outperforms the would-be GDP per capita of non-dollarized Ecuador.\footnote{In recent years, SCA has been applied in a number of different studies. For instance, Rok \parencite*{Spruk2019} studies the economic cost of institutional shocks to Argentina; Grier and Maynard \parencite*{Grier2016} and Absher, Grier, and Grier \parencite*{Absher2020} study market reforms in Georgia; and Powell, Clark, and Nowrasteh \parencite*{Powell2017} look at the impact of mass immigration in Israel.}
+
+The paper proceeds in the following way. Section 2 reviews the dollarization debate. Section 3 presents an overall view of economic and social series for Ecuador. Section 4 develops the SCA analysis. Section 5 concludes.
 
 % ================================================================
 % SECTION 2: THE DOLLARIZATION DEBATE
 \section{The Dollarization Debate}
+    \label{sec:debate}
+
+Dollarization is the adoption of a foreign currency by a domestic country whether the currency adopted is the U.S. dollar (USD), the New Zealand dollar, the Euro, the British Pound, or any other foreign currency. Dollarization can either by unilateral or bilateral. In the former case, the dollarizing country unilaterally decides to adopt a foreign currency. In the latter, there is an agreement with the central bank that can include, for instance, sharing some of the new seigniorage that dollarization will bring.
+
+Another issue to consider is that dollarization can also be either formal or informal. In the former case, the government formally adopts a foreign currency, while in the latter case economic agents decide to use a foreign currency regardless of the government's mandate. The distinction between formal and informal dollarization is important because it draws a distinction between a spontaneous and planned dollarization reforms. In the first case we have a bottom-up institutional change spontaneously driven by the private sector. In the second case we have a top-down government reform. Ecuador represents a bottom-up dollarization in the sense that it was the public who chose to use the USD and later on the government decided to formalize such decision \parencite{White2014a}. It was not the government who imposed the USD on the public, it was the public who imposed the USD on the government.\footnote{For a more detailed analysis if Ecuador's dollarization see Beckerman and Solimano \parencite*{Beckerman2002}.}
+
+As mentioned before, the dollarization debate has been highly speculative. The debate can be summarized in four issue: (1) the problem of loosing monetary policy, (2) the problem of the absence of a lender of last resort (LOLR), (3) the problem of loosing seigniorage, and (4) the problem of unnecessary dollarization by its necessary conditions.
 
 % SUB-SECTION 2.1
 \subsection{The Problem of Losing Monetary Policy}
+
+When a country dollarizes it gives up the possibility of executing its own domestic monetary policy. Some critics argue that this lack of control serves as a restrictive straitjacket rather than as reform that liberates the country from its own inefficient monetary policy \parencite{Sachs1999}. This constraint is particularly important in the case of foreign nominal shocks that would require a prudent and well calibrated reaction by a domestic central banks. Sachs and Larrain \parencite[][p. 80]{Sachs1999}, they describe dollarization as a "reckless" reform.
+
+However, the point of dissent is not a dollarized economy will be unable to carry its own monetary policy. The point of dissent is whether dollarization, despite all its shortcomings, is a better alternative to an erratic domestic central bank. The whole point of dollarization is to shut down the domestic central bank because its a constant source of nominal shocks and high inflation.
+
+It is unclear that in countries that face a potential dollarization domestic monetary policy is as independent as it is assumed to be. A detachment from foreign nominal shocks requires the adoption of a free floating exchange rate. However, many developing countries suffer from feat of floating  \parencite{Calvo2002}, which means that in practice the domestic central bank is deviating from the ideal domestic strategy. If domestic monetary policy is going to be reticent to devalue when facing foreign shocks, then it is unclear what benefit the domestic country is giving up by dollarizing. In other words, the alleged benefit of a domestic central bank is inversely related with the degree of fear of floating.\footnote{Levy-Yeyati, Sturzenegger, and Gluzmann \parencite{Levy-Yeyati2003} argue that some countries face more fear of appreciation than of depreciation.}
+
+Furthermore, a cost-benefit analysis of dollarization must avoid falling into the Nirvana fallacy \parencite{Demsetz1969}. Objecting to dollarization on the grounds that the ideal domestic monetary policy will be unfeasible is a Nirvana fallacy type of argument. Countries that face a potential dollarization do not have ideal central bank, they have very inefficient ones. The realistic choice is between dollarization and a central bank unable to commit to efficiency.
+
+For the purpose of framing the discussion, consider the following Taylor-rule reaction function of the domestic central bank.\footnote{This policy reaction is presented just for illustration purposes. A country that faces a potential dollarization is in such monetary disorder that the central bank may not follow any reaction policy other than a day-to-day decision about how to make it to the next day.}
+
+\begin{equation} \label{Eq:1}
+    i_t = i^*_t + \phi_\pi \tilde{\pi}_t + \phi_X \tilde{X}_t + \varepsilon_t
+\end{equation}
+
+where $t$ is the time period, $i$ and $i^*$ denote short-term and short-term equilibrium interest rates, $\tilde{\pi}$ is the inflation gap, $\tilde{X}$ is the gap of other variables (such as output or unemployment gap), $\phi$ are positive numbers and $\varepsilon$ is an error term or shock. A deviation form the interest rate dictated by the policy rule would produce economic costs, such a deviation from the inflation target, misallocation of resources, relative price distortion, monetary illusion, and so on.
+
+The main concern is dollarization is exposed to negative shock (a large negative $\varepsilon$) that could lead the economy into a serious recession. In terms of equation \ref{Eq:1}, the alternative is not a domestic central bank that produces small deviations from the policy rule. The alternative is a domestic central bank being the source of large values of $\varepsilon$. The efficient central bank is not a feasible option; otherwise dollarization wouldn't be necessary.
+
+
+
 
 % SUB-SECTION 2.2
 \subsection{The Problem of the Absence of a Lender of Last Resort}
@@ -73,12 +138,16 @@ This paper uses a Synthetic Control Analysis to examine the economic effectivene
 \subsection{Infant Mortality}
 
 
+
 % ================================================================
 % SECTION 5: CONCLUSIONS
 
 
-
-
+% ================================================================
+% SECTION 6: REFERENCES
+\newpage
+\singlespacing
+\printbibliography
 
 % ================================================================
 % THE END
