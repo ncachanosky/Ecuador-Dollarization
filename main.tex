@@ -16,7 +16,9 @@
 \usepackage{fontspec}
 \usepackage[backend=biber, style=apa, citestyle=apa]{biblatex}
 
-\setmainfont{Caladea}
+%\setmainfont{Caladea}
+\usepackage{libertine}
+\usepackage[libertine]{newtxmath}
 \addbibresource{references.bib}
 
 \hypersetup{
@@ -32,7 +34,7 @@
 \headheight = 28pt
 \chead{20 YEARS OF DOLLARIZATION IN ECUADOR\\
        \textit{Nicolás Cachanosky and John Ramseur}}
-\cfoot{\footnotesize Page \thepage \hspace{1pt} of \pageref{LastPage}} 
+\cfoot{\footnotesize Page \thepage \hspace{0.5pt} of \pageref{LastPage}} 
 
 
 \title{20 Years of Dollarization in Ecuador: A Synthetic Control Analysis}
@@ -44,6 +46,7 @@
 % ================================================================
 % ================================================================
 % DOCUMENT
+\setlength{\marginparwidth}{2cm}
 \begin{document}
 
 % ================================================================
@@ -78,7 +81,7 @@ Previous work on Ecuador's dollarization looks at issues such as the loss of sei
 The paper proceeds in the following way. Section 2 reviews the dollarization debate. Section 3 presents an overall view of economic and social series for Ecuador. Section 4 develops the SCA analysis. Section 5 concludes.
 
 % ================================================================
-% SECTION 2: THE DOLLARIZATION DEBATE
+% SECTION 2: THE DOLLARIZATION DEBATE: MAIN CONCERNS
 \section{The Dollarization Debate}
     \label{sec:debate}
 
@@ -112,12 +115,41 @@ The main concern is dollarization is exposed to negative shock (a large negative
 % SUB-SECTION 2.2
 \subsection{The Problem of the Absence of a Lender of Last Resort}
 
+A dollarized economy does not have a central bank to perform the duties of a LOLR. This is problematic because the financial market is seen as inherently unstable. According to this view, illiquid (yet solvent) banks are prone to suffer a bank run. If the bank run spreads through the financial market, then a LOLR is needed to get the situation under control and avoid a major financial crisis. For the purpose of this paper, we take the inherent instability of the banking sector as given.\footnote{The inherent instability view of banks rests on the Diamond and Dybvig \parencite*{Diamond1983}. For a critical review of this model and its implications see Cachanosky \parencite*[][Ch. 1]{Cachanosky2018a}, Dowd \parencite*{Dowd1992a}, Selgin \parencite*[][Ch. 11]{Selgin1996c}, and White \parencite*[][Ch. 6]{White1999c}.}
+
+Using Bagehot's rule as a reference, a LOLR should lend only at a premium rate only to illiquid but solvent banks. A central bank can deviate from this rule, leading to moral hazard problems. As long commercial banks expect the central bank to offer bailout to insolvent banks, then said banks will be inclined to invest in riskier assets increasing the likelihood of a financial crisis. To avoid moral hazard, a central banks adherence to Bagehot's rule must be credible. This is not easy because central banks can bailout as many banks as desired without suffering losses or going bankrupt. In these terms, dollarization can be seen as a credible commitment to not bailout banks at the cost of not being able to do so when needed \parencite{Gale2002}. The credibility reading of dollarization is relevant for countries where central banks presidents do not face incentives to increase credibility due to their short term in office.\footnote{For instance, the Argentine central bank had 23 presidents between 1983 and 2015, with an average of 570 days in office.}
+
+Yet, a LOLR can take many forms, a central bank being one of them. Therefore, dollarization does not mean there will be no LOLR, it means this role will not be performed by the monetary authority. One option is what Ecuador does, which is having a special tax on deposits to fund a liquidity fund that can be used if needed \parencite{Quispe-Agnoli2006}. This fund can be managed by a public office (as is the case of Ecuador) or by a consortium of private banks with the incentive to bailout only solvent banks. Another options is to mandate a deposit insurance.\footnote{The case of the United States is telling. Bank failures decreased with the implementation of the FDIC, not with the establishment of the Federal Reserve in 1913. See Selgin, Lastrapes, and White \parencite*[][pp. 582-583]{Selgin2012a}.} A third case would be to allow a deep integration with international financial markets, as is the case of Panamá \parencite{MorenoVillalaz1999,MorenoVillalaz2005}. Banks operating domestically can be owned by foreign banks, which would have the motivation and information to keep their international branches in a good financial situation. There is also the option of regulating reserve requirements and credit diversification. In short, the option is not between a LOLR (central bank) and no LOLR (dollarization). A range of different version of a LOLR are available. What is needed is an entity able to lend, not necessary one that can "print" its own money \parencite{Calvo2001}. Even a central bank with the capacity to create money may be limited on its role as LOLR if domestic banks and firms hold debt in foreign currency because the domestic currency inflates at a high rate.
+
+The more private-market oriented a LOLR is, the closer it will adhere to Bagehot's rule minimizing moral hazard. A privately managed fund risks facing loses if it saves banks that are insolvent, but a central bank doe not face the same cost-benefit incentives. The underlying issue in the case of dollarization is not whether or not to have a LOLR, but what type of LOLR should be in place.\footnote{Bagehot's rule was endorsed by Ben Bernanke when serving as Chairman of the Federal Reserve. It is less clear that the acts of the Fed followed this endorsement \parencite{Hogan2015b}.}
+
 % SUB-SECTION 2.3
 \subsection{The Problem of Lost Seigniorage}
+
+The decision to dollarize also means to give up seigniorage. Seigniorage is the revenue accruing to the currency issuer. Seigniorage must be distinguished from the inflation tax, which the extraction of the public's purchasing power by the government. The distinction between these two sources of revenue is important. In a well functioning economy, seigniorage is larger than the inflation tax. Differently, a country facing a potential dollarization may have negative seigniorage while collecting inflation tax.
+
+The central bank's revenue is the interest collected by holding foreign-denominated assets. The central bank acquires these assets through open market operations. As long as its fiat currency is demanded by the market, the central bank can create its currency and buy foreign assets. The costs of the central bank are the interest rate it must pay for the market to hold its currency (for instance, issuing interest-bearing bonds) plus any operational cost.
+
+\begin{equation}\label{Eq:1}
+    S = ei^FA - iB - C
+\end{equation}
+
+where $S$ is the central bank seigniorage, $e$ is the nominal exchange rate, $i^F$ is the foreign nominal interest rate, $A$ is the amount of foreign assets, $i$ is the domestic interest rate paid by the central bank, $B$ is the amount of bonds issued by the central bank, and $C$ denote the operational costs of the monetary authority.
+
+If there is high inflation, then the low demand for the domestic currency means the central bank must pay a high value of $iB$, potentially producing a negative seigniorage. The more informally dollarized an economy is, and the higher the inflation rate is, the less seigniorage the government collects.
+
+What a dollarizing economy resigns to is the inflation tax. The inflation tax is typically regressive and highly distorting. Also, as a non-legislated tax it can be at odds with constitutional mandates. High inflation is not only economically costly, it can also contribute to institutional degradation. For a country facing an out of control inflation, giving up the inflation tax may be a low price to pay to get monetary stability.
+
+Yet, some seigniorage can be kept domestically after a unilateral dollarization by adding some financial reforms. Following the examples of Scotland, Ireland and Hong Kong, domestic banks can be allowed to issue their own convertible banknotes \parencite[see][]{Hogan2012}. Seigniorage will be collected by the private sector rather than the government. The alternative, however, is the government collecting an inflation tax, not proper seigniorage from its central bank.
 
 % SUB-SECTION 2.4
 \subsection{The Problem of Unnecessary Dollarization by its Necessary Conditions}
 
+Dollarization is not a reform intended to solve all of the economic problems of a country. Other reforms such as balancing the budget, deregulate the labor market, or remove trade restrictions are some examples of what else a country in need of dollarization should do. The need of other reforms begs if dollarization is still needed. If all these reforms are carried out, why dollarize? Seems that the necessary reforms to make dollarization robust and useful make it unnecessary at the same time. Dollarization is unnecessary by its own necessary reforms.
+
+Dollarization can still be useful in two ways. The first one is being the trigger that makes the other reforms happen. Dollarization may be unneeded if other reforms take place, but these other reforms may not take place without dollarization. Dollarization may be unneeded with other reform in place, but dollarization is needed for those reforms to take place. The second one requires to avoid again a Nirvana fallacy type of argument. Certainly, if the feasible reforms are the ideal one, dollarization would not be needed. Yet, the feasible reforms may be enough for dollarization to work even if they are not idea. In that case, dollarization works as an institutional constrain on the government. Dollarization is not just a monetary policy reform, it is also an institutional reform. The credibility that the dollarizing country cannot produce is imported from a foreign country. 
+
+Assume institutional quality ranks from 0 (worse) to 100 (ideal). Assume further that the institutional quality of a country considering dollarization is 40. Dollarization needs an institutional quality of 70 to be sustainable and beneficial, and becomes unnecessary with an institutional quality of at least 90. The realistic institutional reform this country can produce would produce an institutional quality of 80; more than what is necessary for dollarization to work, less than what would make it unnecessary.
 
 % ================================================================
 % SECTION 3: SOME EMPIRICAL EVIDENCE
