@@ -1,8 +1,10 @@
+% ================================================================
+% ================================================================
+% --- PREAMBLE
+% --- Document class
 \documentclass[12pt]{article}
 
-% ================================================================
-% ================================================================
-% PREAMBLE
+% --- Packages
 \usepackage[utf8]{inputenc}
 \usepackage[top=1in, bottom=1in, left=1in, right=1in]{geometry}
 \usepackage{setspace}
@@ -17,6 +19,7 @@
 \usepackage{fontspec}
 \usepackage[backend=biber, style=apa, citestyle=apa]{biblatex}
 
+% --- Settings
 %\setmainfont{Caladea}
 \usepackage{libertine}
 \usepackage[libertine]{newtxmath}
@@ -31,27 +34,42 @@
     
 \pagestyle{fancy}
 
+% --- Header and footer
 \fancyhf{}
 \headheight = 28pt
 \chead{20 YEARS OF DOLLARIZATION IN ECUADOR\\
        \textit{Nicolás Cachanosky and John Ramseur}}
 \cfoot{\footnotesize Page \thepage \hspace{0.5pt} of \pageref{LastPage}} 
 
+% --- Title page
+\title{20 YEARS OF DOLLARIZATION IN ECUADOR: A SYNTHETIC CONTROL ANALYSIS
+       \thanks{We appreciate comments by Lawrence H. White. Any error or omission is our own.} \\
+       \bigskip}
 
-\title{20 Years of Dollarization in Ecuador: A Synthetic Control Analysis}
-
-\author{Nicolás Cachanosky\thanks{Department of Economics, Metropolitan State University of Denver. E-mail: \href{mailto:ncachano@msudenver.edu}{ncachano@msudenver.edu}.} \and John Ramseur\thanks{Department of Economics, Metropolitan State University of Denver, E-mail: \href{mailto:jramseur@msudenver.edu}{jramseur@msudenver.edu}.}}
+\author{
+        \textbf{Nicolás Cachanosky} \\
+        Metropolitan State University of Denver \\
+        Department of Economics \\
+        \href{mailto:ncachano@msudenver.edu}{ncachano@msudenver.edu} \\
+        \and
+        \textbf{John Ramseur} \\
+        Metrpolitan State University of Denver \\
+        Department of Economics \\
+        \href{mailto:jramseur@msudenver.edu}{jramseur@msudenver.edu} \\
+        \bigskip}
 
 \date{\today}
 
+
 % ================================================================
 % ================================================================
-% DOCUMENT
+% --- DOCUMENT
 \setlength{\marginparwidth}{2cm}
 \begin{document}
 
+
 % ================================================================
-% TITLE PAGE
+% --- TITLE PAGE
 
 \maketitle
 
@@ -60,14 +78,16 @@
 This paper uses a Synthetic Control Analysis to examine the economic effectiveness of dollarization in Ecuador. We address common concerns surrounding the adoption of dollarization as a policy and provide several solutions to those concerns. We find that dollarization resulted in significant higher levels of income without clear evidence of worsening in social health variables such as infant mortality, poverty, and income distribution.
 \end{abstract}
 
+\bigskip \bigskip
 \footnotesize \noindent \textbf{JEL codes}: E42; E50; O43 \\
 \footnotesize \noindent \textbf{Keywords}: Ecuador, dollarization, synthetic control analysis
 
 \newpage
 \doublespacing
 
+
 % ================================================================
-% SECTION 1: INTRODUCTION
+% --- SECTION 1: INTRODUCTION
 \section{Introduction} 
     \label{sec:intro}
 
@@ -82,7 +102,7 @@ Previous work on Ecuador's dollarization looks at issues such as the loss of sei
 The paper proceeds in the following way. Section 2 reviews the dollarization debate. Section 3 presents an overall view of economic and social series for Ecuador. Section 4 develops the SCA analysis. Section 5 concludes.
 
 % ================================================================
-% SECTION 2: THE DOLLARIZATION DEBATE: MAIN CONCERNS
+% --- SECTION 2: THE DOLLARIZATION DEBATE: MAIN CONCERNS
 \section{The Dollarization Debate}
     \label{sec:debate}
 
@@ -92,7 +112,7 @@ Another issue to consider is that dollarization can also be either formal or inf
 
 As mentioned before, the dollarization debate has been highly speculative. The debate can be summarized in four issue: (1) the problem of loosing monetary policy, (2) the problem of the absence of a lender of last resort (LOLR), (3) the problem of loosing seigniorage, and (4) the problem of unnecessary dollarization by its necessary conditions.
 
-% SUB-SECTION 2.1
+% --- SUB-SECTION 2.1
 \subsection{The Problem of Losing Monetary Policy}
 
 When a country dollarizes it gives up the possibility of executing its own domestic monetary policy. Some critics argue that this lack of control serves as a restrictive straitjacket rather than as reform that liberates the country from its own inefficient monetary policy \parencite{Sachs1999}. This constraint is particularly important in the case of foreign nominal shocks that would require a prudent and well calibrated reaction by a domestic central banks. Sachs and Larrain \parencite[][p. 80]{Sachs1999}, they describe dollarization as a "reckless" reform.
@@ -113,7 +133,7 @@ where $t$ is the time period, $i$ and $i^*$ denote short-term and short-term equ
 
 The main concern is dollarization is exposed to negative shock (a large negative $\varepsilon$) that could lead the economy into a serious recession. In terms of equation \ref{Eq:1}, the alternative is not a domestic central bank that produces small deviations from the policy rule. The alternative is a domestic central bank being the source of large values of $\varepsilon$. The efficient central bank is not a feasible option; otherwise dollarization wouldn't be necessary. Consider the case of Ecuador itself, between 1983 and its dollarization in 2000, the average yearly inflation rate was 42.2-percent. Argentina has a worse situation. Between the rise of Perón in 1946 and 2020, the yearly average inflation rate is 62-percent. Large shocks can originate externally and also internally. Far from being a settled issue, comparing the costs of domestic and external monetary shocks is an empirical question.
 
-% SUB-SECTION 2.2
+% --- SUB-SECTION 2.2
 \subsection{The Problem of the Absence of a Lender of Last Resort}
 
 A dollarized economy does not have a central bank to perform the duties of a LOLR. This is problematic because the financial market is seen as inherently unstable. According to this view, illiquid (yet solvent) banks are prone to suffer a bank run. If the bank run spreads through the financial market, then a LOLR is needed to get the situation under control and avoid a major financial crisis. For the purpose of this paper, we take the inherent instability of the banking sector as given.\footnote{The inherent instability view of banks rests on the Diamond and Dybvig \parencite*{Diamond1983}. For a critical review of this model and its implications see Cachanosky \parencite*[][Ch. 1]{Cachanosky2018a}, Dowd \parencite*{Dowd1992a}, Selgin \parencite*[][Ch. 11]{Selgin1996c}, and White \parencite*[][Ch. 6]{White1999c}.}
@@ -124,14 +144,14 @@ Yet, a LOLR can take many forms, a central bank being one of them. Therefore, do
 
 The more private-market oriented a LOLR is, the closer it will adhere to Bagehot's rule minimizing moral hazard. A privately managed fund risks facing loses if it saves banks that are insolvent, but a central bank doe not face the same cost-benefit incentives. The underlying issue in the case of dollarization is not whether or not to have a LOLR, but what type of LOLR should be in place.\footnote{Bagehot's rule was endorsed by Ben Bernanke when serving as Chairman of the Federal Reserve. It is less clear that the acts of the Fed followed this endorsement \parencite{Hogan2015b}.}
 
-% SUB-SECTION 2.3
+% --- SUB-SECTION 2.3
 \subsection{The Problem of Lost Seigniorage}
 
 The decision to dollarize also means to give up seigniorage. Seigniorage is the revenue accruing to the currency issuer. Seigniorage must be distinguished from the inflation tax, which the extraction of the public's purchasing power by the government. The distinction between these two sources of revenue is important. In a well functioning economy, seigniorage is larger than the inflation tax. Differently, a country facing a potential dollarization may have negative seigniorage while collecting inflation tax.
 
 The central bank's revenue is the interest collected by holding foreign-denominated assets. The central bank acquires these assets through open market operations. As long as its fiat currency is demanded by the market, the central bank can create its currency and buy foreign assets. The costs of the central bank are the interest rate it must pay for the market to hold its currency (for instance, issuing interest-bearing bonds) plus any operational cost.
 
-\begin{equation}\label{Eq:1}
+\begin{equation}\label{Eq:2}
     S = ei^FA - iB - C
 \end{equation}
 
@@ -143,7 +163,7 @@ What a dollarizing economy resigns to is the inflation tax. The inflation tax is
 
 Yet, some seigniorage can be kept domestically after a unilateral dollarization by adding some financial reforms. Following the examples of Scotland, Ireland and Hong Kong, domestic banks can be allowed to issue their own convertible banknotes \parencite[see][]{Hogan2012}. Seigniorage will be collected by the private sector rather than the government. The alternative, however, is the government collecting an inflation tax, not proper seigniorage from its central bank.
 
-% SUB-SECTION 2.4
+% --- SUB-SECTION 2.4
 \subsection{The Problem of Unnecessary Dollarization by its Necessary Conditions}
 
 Dollarization is not a reform intended to solve all of the economic problems of a country. Other reforms such as balancing the budget, deregulate the labor market, or remove trade restrictions are some examples of what else a country in need of dollarization should do. The need of other reforms begs if dollarization is still needed. If all these reforms are carried out, why dollarize? Seems that the necessary reforms to make dollarization robust and useful make it unnecessary at the same time. Dollarization is unnecessary by its own necessary reforms.
@@ -161,12 +181,9 @@ Figure \ref{fig:Fig01} assumes that institutional quality ranks from 0 (worse) t
 
 The institutional robustness of dollarization should not be underestimated. Dollarization in Ecuador survived (1) the left-leaning populist regime of Rafael Correa, (2) a sovereign debt default, (3) the 2008 financial crisis. Arguably, dollarization served as a constrain on populist policies. Absher, Grier, and Grier \parencite*{Absher2020} find that durable left-populist regimes in Latin America produce significant losses in real income. The only exception in their study is Ecuador, which is also the only dollarized country in their study.
 
-% ================================================================
-% SECTION 3: SOME EMPIRICAL EVIDENCE
-\section{Some Empirical Evidence}
 
 % ================================================================
-% SECTION 4: SYNTHETIC CONTROL ANALYSIS
+% --- SECTION 4: SYNTHETIC CONTROL ANALYSIS
 \section{Synthetic Control Analysis}
 
 \subsection{The SCA Method and Donor Pool Selection Criteria}
@@ -180,15 +197,16 @@ The institutional robustness of dollarization should not be underestimated. Doll
 
 
 % ================================================================
-% SECTION 5: CONCLUSIONS
+% --- SECTION 5: CONCLUSIONS
 
 
 % ================================================================
-% SECTION 6: REFERENCES
+% --- SECTION 6: REFERENCES
 \newpage
 \singlespacing
 \printbibliography
 
+
 % ================================================================
-% THE END
+% --- THE END
 \end{document}
