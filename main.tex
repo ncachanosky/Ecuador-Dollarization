@@ -19,6 +19,7 @@
 \usepackage{fontspec}
 \usepackage{adjustbox}
 \usepackage{float}
+\usepackage{dcolumn}
 \usepackage[backend=biber, style=apa, citestyle=apa]{biblatex}
 
 % --- Settings
@@ -182,10 +183,10 @@ Dollarization can still be useful in two ways. The first one is being the trigge
 
 Figure \ref{fig:Fig01} assumes that institutional quality ranks from 0 (worse) to 100 (best or ideal). Assume further that the institutional quality of a country considering dollarization is 40. Dollarization needs an institutional quality of 70 to be sustainable and beneficial, and becomes unnecessary with an institutional quality of at least 90. The realistic institutional reform this country can produce would give an institutional quality of 80; more than what is necessary for dollarization to work, less than what would make it unnecessary.
 
-\begin{figure}[h]
+\begin{figure}[!htbp]
     \caption{Institutional reform and dollarization}
     \centering
-    \includegraphics{Figures/Fig_01.png}
+    \includegraphics{Fig_01.png}
     \label{fig:Fig01}
 \end{figure}
 
@@ -203,15 +204,32 @@ SCA allows to build a counterfactual non-dollarized Ecuador and compare the evol
 
 First, the donor pool must include countries that share similar characteristic to the treated unit (Ecuador in our case). SCA prioritizes a representative donor pool over a large-as-possible sample. A larger sample may include non-representative countries that can reduce the efficiency of the estimation or in overfitting. In SCA, more is not always better. Second, the treated country must be the only one in the sample being affected by the shock under analysis and the shock must occur at a definite point of time. Ecuador must be the only country going through dollarization. Third, there should be enough observation in the pre-shock period for the SCA to be able to build a credible synthetic Ecuador.
 
-Besides the donor countries, a number of covariates (predictor) variables are chosen as well. The SCA method minimizes the mean-squared-prediction-error (MSPE) in the pre-shock period.\footnote{More formally, let there be $j = 1,...,J$ countries in the donor pool and $W$ be a vector of non-negative weights assigned to each country $(w_j \geq 0$. Then, SCA estimates $W^*$ such that $W^* = \operatorname{arg\min} (X_1 - X_0W)'V(X_1 - X_0W)$ where $X_1$ contains the covariates from the treated country and $X_0$ contains the covariates it the donor countries. $V$ is a diagonal matrix with non-negative components.} The weights used to minimize the MSPE are then used to build the synthetic estimation.
+Besides the donor countries, a number of covariates (predictor) variables are chosen as well (see table \ref{table:sources}). The SCA method minimizes the mean-squared-prediction-error (MSPE) in the pre-shock period.\footnote{More formally, let there be $j = 1,...,J$ countries in the donor pool and $W$ be a vector of non-negative weights assigned to each country $(w_j \geq 0$. Then, SCA estimates $W^*$ such that $W^* = \operatorname{arg\min} (X_1 - X_0W)'V(X_1 - X_0W)$ where $X_1$ contains the covariates from the treated country and $X_0$ contains the covariates it the donor countries. $V$ is a diagonal matrix with non-negative components.} The weights used to minimize the MSPE are then used to build the synthetic estimation.
 
 Our donor pool is limited to Latin America countries to maintain an overall social and economic similarity with Ecuador. The reason to limit our donor pool to Latin America is to avoid the accidental inclusion of a country that not representative enough of Ecuador social and economic characteristics. We also exclude Latin American countries that are dollarized such as Panamá and El Salvador.\footnote{We do include Argentina, which was under a currency board during the 1990s. However, Argentine had an heterodox currency board which allows deviations from its strict (orthodox) adherence \parencite{Hanke2008}.} The donor countries are: (1) Argentina, (2) Bolivia, (3) Brazil, (4) Chile, (5) Colombia, (6) Costa Rica, (7) Mexico, (8) Paraguay, (9) Perú, and (10) Uruguay
 
 \input{Tables/sources}
 
+Using all pre-treatment values of the outcome variable to predict post-treatment values of the same outcome variables can lead to inaccurate results or bias \parencite{Ashok2015}. Therefore, we offer for each SCA estimation two models. Model 1 uses only pre-treatment selected observations from the outcome variable along the chosen covariates. Model 2 uses only the covariate variables as predictors of the outcome variables. We show the results of both models for each outcome variable studied below. 
+
+\begin{figure}[!htbp]
+    \caption{Institutional reform and dollarization}
+    \centering
+    \includegraphics{Fig_01.png}
+    \label{fig:SCA_GDP}
+\end{figure}
+
+
+
 \subsection{Real GDP per Capita (PPP)}
 
-blah
+Our first estimation is real GDP per capita (PPP adjusted).\footnote{It is common in the SCA literature to use PPP adjusted real GDP per capita. See, for instance, Abadie, Diamond, and Hainmuller \parencite*{Abadie2015}, Absher, Grier, and Grier \parencite*{Absher2020}, Cavallo, Noy, and Pantano \parencite*{Cavallo2013}, Campis, Coricelli, and Moretti \parencite*{Campos2019}, and Lawson, Grier, and Absher \parencite*{Lawson2019}.} Consider that dollarization occurs at the same time price of commodities start to rise. It is expected, then, to see an upward trend in Ecuador's income per capita. This situation exemplifies that a better conterfactual than comparing Ecuador before and after dollarization is to compare Ecuador with its fate had not dollarized. 
+
+Tables \ref{table:GDP_weights} shows the weight assigned to each country for each SCA method. 
+
+
+
+\input{Tables/SCA_GDP_countries}
 
 \subsection{Total Factor Productivity}
 
