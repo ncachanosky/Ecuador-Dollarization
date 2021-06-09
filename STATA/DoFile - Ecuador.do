@@ -16,6 +16,7 @@
 * INSTALL SYNTHETIC CONTROL AND DEFINE SETTINGS
 * ==============================================================================
 ssc install synth, replace				
+
 set scheme scientific
 
 cd "C:\Users\ncach\OneDrive\My Documents\Research\GitHub Repositories\Ecuador-Dollarization\STATA"
