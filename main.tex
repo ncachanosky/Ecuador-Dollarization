@@ -100,7 +100,7 @@ Even though history offers more than hundred cases of dollarization \parencite{S
 
 Previous work on Ecuador's dollarization looks at issues such as the loss of seigniorage \parencite{Lange2005}, its effects on fiscal policy \parencite{MariDelCristo2016}, or how feasible it is to de-dollarize Ecuador \parencite{JAMESON2003}. In addition, Jansen and Ortiz \parencite*{Jansen2007} find that the probability of large negative returns in stocks decreased post dollarization while that of positive returns increased.
 
-This paper offers the Nobel application of a synthetic control analysis (SCA) \parencite{Abadie,Abadie2003,Abadie2015} to the case of Ecuador's dollarization. This method builds a synthetic non-dollarized Ecuador that can be used as a counterfactual of its dollarization in 2001. We find that dollarized Ecuador outperforms the synthetic non-dollarized Ecuador in variables such as real GDP per capita, unemployment, and income distribution. We also find inconclusive results in changes to total factor productivity (TFP).\footnote{In recent years, SCA has been applied in a number of different studies. For instance, Rok \parencite*{Spruk2019} studies the economic cost of institutional shocks to Argentina; Grier and Maynard \parencite*{Grier2016} and Absher, Grier, and Grier \parencite*{Absher2020} study market reforms in Georgia; and Powell, Clark, and Nowrasteh \parencite*{Powell2017} look at the impact of mass immigration in Israel.}
+This paper offers the Nobel application of a synthetic control analysis (SCA) \parencite{Abadie,Abadie2003,Abadie2015} to the case of Ecuador's dollarization. This method builds a synthetic non-dollarized Ecuador that can be used as a counterfactual of its dollarization in 2001. We find that dollarized Ecuador outperforms the synthetic non-dollarized Ecuador in variables such as real GDP per capita, unemployment, and income distribution. We also find inconclusive results in changes to total factor productivity (TFP). The ideal counterfactual to evaluate the effects of dollarization in Ecuador is not to compare economic variables before and after dollarization, but to compare dollarized Ecuador with a non-dollarized Ecuador. SCA is useful because a real-world non-dollarized Ecuador is not observable.\footnote{In recent years, SCA has been applied in a number of different studies. For instance, Rok \parencite*{Spruk2019} studies the economic cost of institutional shocks to Argentina; Grier and Maynard \parencite*{Grier2016} and Absher, Grier, and Grier \parencite*{Absher2020} study market reforms in Georgia; and Powell, Clark, and Nowrasteh \parencite*{Powell2017} look at the impact of mass immigration in Israel.}
 
 Some scholars consider dollarization to be a good (or second best) reform for countries with troubled currencies \parencite{Avila2019,Cochrane2018,Gale2002,Hanke2003a,White2014a}. Other scholars are critical of dollarization; Sachs and Larrain \parencite*{Sachs1999} offer a good representation of those who oppose to dollarization arguing that it is a "reckless" (p. 80) straitjacket. 
 
@@ -186,7 +186,7 @@ Figure \ref{fig:Fig01} assumes that institutional quality ranks from 0 (worse) t
 \begin{figure}[!htbp]
     \caption{Institutional reform and dollarization}
     \centering
-    \includegraphics{Fig_01.png}
+    \includegraphics{Figures/Fig_01.png}
     \label{fig:Fig01}
 \end{figure}
 
@@ -200,38 +200,62 @@ The institutional robustness of dollarization should not be underestimated. Doll
 
 \subsection{The SCA Method and Donor Pool Selection Criteria}
 
-SCA allows to build a counterfactual non-dollarized Ecuador and compare the evolution of key economic variables such as GDP per capita, TFP, unemployment, and income distribution (GINI coefficient). SCA allows to deal with fixed effects interacting with time-varying coefficients when there is only one treated unit. In simpler terms, synthetic Ecuador is a weighted average of countries included in a donor pool. A few requirements are needed for a proper application of the SCA method.
+SCA allows to build a counterfactual non-dollarized Ecuador and compare the evolution of key economic variables such as GDP per capita, TFP, unemployment, and income distribution (GINI coefficient) with real-world dollarized Ecuador. SCA allows to deal with fixed effects interacting with time-varying coefficients when there is only one treated unit (in our case Ecuador). In simpler terms, synthetic Ecuador is a weighted average of countries included in a donor pool. A few requirements are needed for a proper application of the SCA method.
 
-First, the donor pool must include countries that share similar characteristic to the treated unit (Ecuador in our case). SCA prioritizes a representative donor pool over a large-as-possible sample. A larger sample may include non-representative countries that can reduce the efficiency of the estimation or in overfitting. In SCA, more is not always better. Second, the treated country must be the only one in the sample being affected by the shock under analysis and the shock must occur at a definite point of time. Ecuador must be the only country going through dollarization. Third, there should be enough observation in the pre-shock period for the SCA to be able to build a credible synthetic Ecuador.
+First, the donor pool must include countries that share similar characteristic to the treated unit. SCA prioritizes a representative donor pool over a large-as-possible sample. A larger sample may include non-representative countries that can reduce the efficiency of the estimation or produce overfitting. In SCA, more data is not always better. Second, the treated country must be the only one in the sample being affected by the shock under analysis and the shock must occur at a definite point of time. Ecuador must be the only country going through dollarization. Third, there should be enough observations in the pre-shock period for the SCA to be able to build a credible synthetic Ecuador.
 
-Besides the donor countries, a number of covariates (predictor) variables are chosen as well (see table \ref{table:sources}). The SCA method minimizes the mean-squared-prediction-error (MSPE) in the pre-shock period.\footnote{More formally, let there be $j = 1,...,J$ countries in the donor pool and $W$ be a vector of non-negative weights assigned to each country $(w_j \geq 0$. Then, SCA estimates $W^*$ such that $W^* = \operatorname{arg\min} (X_1 - X_0W)'V(X_1 - X_0W)$ where $X_1$ contains the covariates from the treated country and $X_0$ contains the covariates it the donor countries. $V$ is a diagonal matrix with non-negative components.} The weights used to minimize the MSPE are then used to build the synthetic estimation.
+Besides the donor countries, a number of covariates (predictor) variables are chosen as well (see table \ref{table:sources}). The SCA method minimizes the root-mean-squared-prediction-error (MSPE) in the pre-shock period. The values of the covariates is averaged for the pre-shock period. Then SCA minimizes the MSPE during the pre-shock period. To do so, SCA assigns relative weights to each covariate depending how good they are in predicting the outcome variable. This relative weights are captured in a diagonal matrix (the V matrix). The diagonal values of the V matrix are non negative and normalized to one. Therefore, covariates with low explanatory power over the outcome variable have low values in the V matrix. \footnote{More formally, let there be $j = 1,...,J$ countries in the donor pool and $W$ be a vector of non-negative weights assigned to each country $(w_j \geq 0$. Then, SCA estimates $W^*$ such that $W^* = \operatorname{arg\min} (X_1 - X_0W)'V(X_1 - X_0W)$ where $X_1$ contains the covariates from the treated country and $X_0$ contains the covariates it the donor countries. $V$ is a diagonal matrix with non-negative components.}
 
 Our donor pool is limited to Latin America countries to maintain an overall social and economic similarity with Ecuador. The reason to limit our donor pool to Latin America is to avoid the accidental inclusion of a country that not representative enough of Ecuador social and economic characteristics. We also exclude Latin American countries that are dollarized such as Panamá and El Salvador.\footnote{We do include Argentina, which was under a currency board during the 1990s. However, Argentine had an heterodox currency board which allows deviations from its strict (orthodox) adherence \parencite{Hanke2008}.} The donor countries are: (1) Argentina, (2) Bolivia, (3) Brazil, (4) Chile, (5) Colombia, (6) Costa Rica, (7) Mexico, (8) Paraguay, (9) Perú, and (10) Uruguay
 
 \input{Tables/sources}
 
-Using all pre-treatment values of the outcome variable to predict post-treatment values of the same outcome variables can lead to inaccurate results or bias \parencite{Ashok2015}. Therefore, we offer for each SCA estimation two models. Model 1 uses only pre-treatment selected observations from the outcome variable along the chosen covariates. Model 2 uses only the covariate variables as predictors of the outcome variables. We show the results of both models for each outcome variable studied below. 
+Using all pre-treatment values of the outcome variable to predict its post-treatment values can lead to inaccurate results or bias \parencite{Ashok2015}. Therefore, we offer for two models for each SCA estimation. Besides the chosen covariates, SCA model 1 also uses a few selected values of the outcome variable from the pre-treatment period. SCA model 2 uses only covariates in the pre-treatment period. We use this approach for all SCA estimations below. Table \ref{table:countries} shows the country weight for each outcome variable and for each SCA model.
 
-\begin{figure}[!htbp]
-    \caption{Institutional reform and dollarization}
-    \centering
-    \includegraphics{Fig_01.png}
-    \label{fig:SCA_GDP}
-\end{figure}
-
-
+\input{Tables/countries}
 
 \subsection{Real GDP per Capita (PPP)}
 
-Our first estimation is real GDP per capita (PPP adjusted).\footnote{It is common in the SCA literature to use PPP adjusted real GDP per capita. See, for instance, Abadie, Diamond, and Hainmuller \parencite*{Abadie2015}, Absher, Grier, and Grier \parencite*{Absher2020}, Cavallo, Noy, and Pantano \parencite*{Cavallo2013}, Campis, Coricelli, and Moretti \parencite*{Campos2019}, and Lawson, Grier, and Absher \parencite*{Lawson2019}.} Consider that dollarization occurs at the same time price of commodities start to rise. It is expected, then, to see an upward trend in Ecuador's income per capita. This situation exemplifies that a better conterfactual than comparing Ecuador before and after dollarization is to compare Ecuador with its fate had not dollarized. 
+Our first estimation is real GDP per capita (PPP adjusted).\footnote{It is common in the SCA literature to use PPP adjusted real GDP per capita. See, for instance, Abadie, Diamond, and Hainmuller \parencite*{Abadie2015}, Absher, Grier, and Grier \parencite*{Absher2020}, Cavallo, Noy, and Pantano \parencite*{Cavallo2013}, Campis, Coricelli, and Moretti \parencite*{Campos2019}, and Lawson, Grier, and Absher \parencite*{Lawson2019}.} Consider that dollarization occurs at the same time that price of commodities start to rise in the early 2000s. It is expected, then, to see an upward trend in Ecuador's income per capita with or without dollarization. This situation with a coincidence in when dollarization takes place and when commodity prices start to rise exemplifies that the ideal conterfactual is not what happens to Ecuador's economy before and after dollarization, but how does dollarized Ecuador compares had dollarization not happened. 
 
-Tables \ref{table:GDP_weights} shows the weight assigned to each country for each SCA method. 
+Tables \ref{table:GDP_balance} shows the predictor balance, V matrix values, and RMSPE for both SCA models. With the given sample, two or three countries are needed to minimize the RMSPE of synthetic Ecuador. The tables show that the model that includes two observations of the outcome variable has a lower RMSPE, but the outcome values carry most of the weight as explanatory values.
 
+\input{Tables/SCA_GDP_balance}
 
+Figure \ref{fig:SCA_GDP} depicts dollarized Ecuador along both SCA estimations. As expected, we see the three lines starting an upward trend at the same time the price of commodities start to rise. However, the GDP per capita (adjusted for cost of living) outperforms both SCA estimations; real income of Ecuador grew more than it would have absent the dollarization reform. The plot also depicts the impact of the 2008 crisis. Despite being dollarized, Ecuador's real GDP (PPP) remained higher than the non-dollarized counterfactual estimations.
 
-\input{Tables/SCA_GDP_countries}
+\begin{figure}[!htbp]
+    \caption{SCA: Real GDP per capita (PPP)}
+    \centering
+    \includegraphics{STATA/Fig_GDP_SCA.pdf}
+    \label{fig:SCA_GDP}
+\end{figure}
+
+The plot also shows that starting in 2015 Ecuador's real GDP (PPP) falls and then stagnates in 2016. This does not occur in the counterfactual, which may suggest that the issue rests on the use of a foreign currency. However, the reason for this change in trend is a combination of (1) fall in oil prices, (2) increased tax on exports, and (3) the 2016 earthquake. The latter was absent in the donor countries that build the synthetic Ecuador. These new shocks mean that dollarization is not the obvious reason of the change in real income. 
+
+The spread between dollarized Ecuador and its synthetic estimations is economically significant. By 2005, Ecuador is producing a 5-percent higher real income (PPP adjusted), by 2010 Ecuador is producing between 8-percent and 11-percent higher than the synthetic estimations (figure \ref{fig:SCA_gap}). At the peak, dollarization brought between 12-percent and 20-percent of higher PPP adjusted real income. It plausible that monetary stability and credible reform brought more benefits than being undefended of foreign shocks (recall that Ecuador still has a liquidity fund at its disposal).
+
+\begin{figure}[!htbp]
+    \caption{SCA: Real GDP per capita (PPP) synthetic gap}
+    \centering
+    \includegraphics{STATA/Fig_GDP_GAP.pdf}
+    \label{fig:SCA_gap}
+\end{figure}
 
 \subsection{Total Factor Productivity}
+
+Similar to GDP, we use PPP adjusted growth rates of GDP. While TFP growth rates are small in magnitude, they do depict opposite signs. Ecuador has a 0.14-percent average annual growth rate of TFP, while synthetic estimations result in  negative 0.02-percent and negative 0.35-percent annual average growth for both model estimations respectively. It is likely that Ecuador needs more regulatory reforms in order to benefit from larger TFP growth rates. Recall that Ecuador ranks low in the EFW index and that dollarization is not a sufficient, even if necessary, reform.
+
+We show first the predictor balance and V matrix for each SCA model. Even though values from the outcome variable have vey low V matrix values, its RMSPE is lower than the model without using outcome values as predictors. Figure \ref{fig:SCA:TFP} depicts the SCA results. Consider three points in the plot. The first one is the quicker recovery of TFP growth rates immediately after the dollarization reform which does not occur in either synthetic estimation. The second is the nominal shock of the 2008 crisis, Ecuador's TFP falls less than the non-dollarized counterfactuals. The third one is, again, the slow down of the economy starting in 2014. As discussed in the previous section, this is due to a new set of shocks affecting Ecuador's economy.
+
+\input{Tables/SCA_TFP_balance}
+
+\begin{figure}[!htbp]
+    \caption{SCA: TFP (constant prices and PPP adjusted)}
+    \centering
+    \includegraphics{STATA/Fig_TFP3_SCA.pdf}
+    \label{fig:SCA_TFP}
+\end{figure}
 
 \subsection{Unemployment}
 
