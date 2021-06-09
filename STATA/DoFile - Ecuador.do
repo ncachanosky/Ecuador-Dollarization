@@ -193,23 +193,23 @@ matrix list e(V_matrix), format(%9.4fc)
 
 * ==============================================================================
 * UNEMPLOYMENT
-synth UNEMP GDPcap IND TRADE X_SHARE FDI									 ///
+synth UNEMP GDPcap IND TRADE FDI											 ///
 	  UNEMP(1990) UNEMP(1999),											     ///
 	  xperiod(1990(1)1999) mspeperiod(1990(1)1999)							 ///
 	  nested allopt															 ///
 	  trunit(7) trperiod(2000) resultsperiod(1990(1)2018) unitnames(COUNTRY) ///
 	  keep(resout_UNEMP_1) replace
 
-matrix list e(V_matrix)
+matrix list e(V_matrix), format(%9.4fc)
 
 
-synth UNEMP GDPcap IND TRADE X_SHARE FDI,									 ///
+synth UNEMP GDPcap IND TRADE FDI,											 ///
 	  xperiod(1990(1)1999) mspeperiod(1990(1)1999)							 ///
 	  nested allopt															 ///
 	  trunit(7) trperiod(2000) resultsperiod(1990(1)2018) unitnames(COUNTRY) ///
 	  keep(resout_UNEMP_2) replace
 
-matrix list e(V_matrix)
+matrix list e(V_matrix), format(%9.4fc)
 
 
 * ==============================================================================
@@ -221,7 +221,7 @@ synth GINI FDI URBAN INV HCI												 ///
 	  trunit(7) trperiod(2000) resultsperiod(1990(1)2017) unitnames(COUNTRY) ///
 	  keep(resout_GINI_1) replace
 
-matrix list e(V_matrix)
+matrix list e(V_matrix), format(%9.4fc)
 
 
 synth GINI FDI URBAN INV HCI,												 ///
@@ -231,7 +231,7 @@ synth GINI FDI URBAN INV HCI,												 ///
 	  trunit(7) trperiod(2000) resultsperiod(1990(1)2017) unitnames(COUNTRY) ///
 	  keep(resout_GINI_2) replace
 
-matrix list e(V_matrix)
+matrix list e(V_matrix), format(%9.4fc)
 
 
 * ==============================================================================
@@ -458,16 +458,21 @@ graph export Fig_UNEMP_SCA.pdf, replace
 
 * GINI
 * ------------------------------------------------------------------------------
-use resout_GINI, clear 
+use resout_GINI_1, clear 
 tsset _time
  
-rename _time        YEAR
-rename _Y_treated   GINI		// Original GINI serioes
-rename _Y_synthetic GINI1		// Synthetic model estimation
 
+rename _Y_treated   GINI		// Original GINI serioes
+rename _Y_synthetic GINI1		// SCA 1
+
+merge 1:1 _time using resout_GINI_2, nogenerate noreport
+
+rename _time        YEAR
+rename _Y_synthetic GINI2		// SCA 2
 
 label variable YEAR  "Year"
-label variable GINI1 "Ecuador (Synthetic Model)"
+label variable GINI1 "Ecuador (Synthetic Model 1)"
+label variable GINI2 "Ecuador (Synthetic Model 2)"
 
 drop _W_Weight
 drop _Co_Number
@@ -475,15 +480,14 @@ drop _Co_Number
 
 * PLOT ECUADOR VS BOTH SYNTHETIC ESTIMATIONS
 * TITLE: GINI Coefficient"
-twoway line GINI GINI1 YEAR, 												 ///
+twoway line GINI GINI1 GINI2 YEAR,											 ///
 	   xlabel(,grid labsize(small)) xlabel(1990(5)2020)						 ///
 	   ylabel(,grid labsize(small))	ylabel(30(10)60)						 ///
 	   xtitle("") xline(2000) ytitle("")									 ///
-	   color("black" "red") lcolor(%75 %75)									 ///
+	   color("black" "red" "green") lcolor(%75 %75 %75)						 ///
 	   text(58 1991 "More income inequality", placement(e) size(vsmall))	 ///
 	   text(32 1991 "Less income inequality", placement(e) size(vsmall))	 ///
 	   legend(position(6) rows(1) size(vsmall))
-
 
 graph export Fig_GINI_SCA.pdf, replace
 
