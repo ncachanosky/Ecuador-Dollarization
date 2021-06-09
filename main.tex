@@ -224,7 +224,7 @@ Tables \ref{table:GDP_balance} shows the predictor balance, V matrix values, and
 
 Figure \ref{fig:SCA_GDP} depicts dollarized Ecuador along both SCA estimations. As expected, we see the three lines starting an upward trend at the same time the price of commodities start to rise. However, the GDP per capita (adjusted for cost of living) outperforms both SCA estimations; real income of Ecuador grew more than it would have absent the dollarization reform. The plot also depicts the impact of the 2008 crisis. Despite being dollarized, Ecuador's real GDP (PPP) remained higher than the non-dollarized counterfactual estimations.
 
-\begin{figure}[!htbp]
+\begin{figure}[!h]
     \caption{SCA: Real GDP per capita (PPP)}
     \centering
     \includegraphics{STATA/Fig_GDP_SCA.pdf}
@@ -235,7 +235,7 @@ The plot also shows that starting in 2015 Ecuador's real GDP (PPP) falls and the
 
 The spread between dollarized Ecuador and its synthetic estimations is economically significant. By 2005, Ecuador is producing a 5-percent higher real income (PPP adjusted), by 2010 Ecuador is producing between 8-percent and 11-percent higher than the synthetic estimations (figure \ref{fig:SCA_gap}). At the peak, dollarization brought between 12-percent and 20-percent of higher PPP adjusted real income. It plausible that monetary stability and credible reform brought more benefits than being undefended of foreign shocks (recall that Ecuador still has a liquidity fund at its disposal).
 
-\begin{figure}[!htbp]
+\begin{figure}[!h]
     \caption{SCA: Real GDP per capita (PPP) synthetic gap}
     \centering
     \includegraphics{STATA/Fig_GDP_GAP.pdf}
@@ -250,7 +250,7 @@ We show first the predictor balance and V matrix for each SCA model. Even though
 
 \input{Tables/SCA_TFP_balance}
 
-\begin{figure}[!htbp]
+\begin{figure}[!h]
     \caption{SCA: TFP (constant prices and PPP adjusted)}
     \centering
     \includegraphics{STATA/Fig_TFP3_SCA.pdf}
@@ -261,13 +261,13 @@ It is likely that Ecuador needs more regulatory reforms in order to benefit from
 
 \subsection{Unemployment}
 
-We not turn to the unemployment rate. Between 1990 and 2000, the unemployment rate depicts an upward trend, going from a low of 6-percent to a peak of 14-percent in 1999. After dollarization, the unemployment rate falls to 5-percent and enters what looks to be a slight downward trend. The last data for the unemployment rate is below 4-percent. 
+We now turn to the unemployment rate. Between 1990 and 2000, the unemployment rate depicts an upward trend, going from a low of 6-percent to a peak of 14-percent in 1999. After dollarization, the unemployment rate falls to 5-percent and enters what looks to be a slight downward trend. The most recent data for the unemployment rate is below 4-percent. 
 
-Table \ref{table:UNEMP_balance} shows the predictor balance, V matrix values, and RMSPE for each estimation. SCA results are shown in figure \ref{fig:SCA_UNEMP}.
+Table \ref{table:UNEMP_balance} shows the predictor balance, V matrix values, and RMSPE for each estimation. SCA results are shown in figure \ref{fig:SCA_UNEMP}. Note that in this case SCA models 1 and 2 rely heavily on the unemployment rate of 1999 and FDI (\% GDP) respectively. Both estimations show that dollarized Ecuador has a persistent lower unemployment rate than the synthetic alternatives. It also shows a more stable unemployment rate starting in 2014. Despite its incomplete reforms in the labor market, dollarization correlates with a lower unemployment rate should Ecuador have kept its own central bank.
 
 \input{Tables/SCA_UNEMP_balance}
 
-\begin{figure}[!htbp]
+\begin{figure}[!h]
     \caption{SCA: Unemployment rate}
     \centering
     \includegraphics{STATA/Fig_UNEMP_SCA.pdf}
@@ -275,6 +275,20 @@ Table \ref{table:UNEMP_balance} shows the predictor balance, V matrix values, an
 \end{figure}
 
 \subsection{GINI coefficient}
+
+Finally, we look at the case if income distribution as measured by the GINI coefficient (0: perfect equality; 100: perfect inequality). 
+
+\input{Tables/SCA_GINI_balance}
+
+\begin{figure}[!h]
+    \caption{SCA: GINI coefficient}
+    \centering
+    \includegraphics{STATA/Fig_GINI_SCA.pdf}
+    \label{fig:SCA_UNEMP}
+\end{figure}
+
+
+
 
 % ================================================================
 % --- SECTION 4: CONCLUSIONS
