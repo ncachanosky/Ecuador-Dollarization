@@ -179,7 +179,7 @@ synth TFP_CB INV FDI HCI TRADE LABOR_SHARE									 ///
 	  trunit(7) trperiod(2000) resultsperiod(1990(1)2018) unitnames(COUNTRY) ///
 	  keep(resout_TFP_CB_1) replace
 
-matrix list e(V_matrix)
+matrix list e(V_matrix), format(%9.4fc)
 
 synth TFP_CB INV FDI HCI TRADE LABOR_SHARE,									 ///
 	  xperiod(1990(1)1999) mspeperiod(1990(1)1999)							 ///
@@ -187,7 +187,7 @@ synth TFP_CB INV FDI HCI TRADE LABOR_SHARE,									 ///
 	  trunit(7) trperiod(2000) resultsperiod(1990(1)2018) unitnames(COUNTRY) ///
 	  keep(resout_TFP_CB_2) replace
 
-matrix list e(V_matrix)
+matrix list e(V_matrix), format(%9.4fc)
 
 
 * ==============================================================================
