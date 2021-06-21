@@ -132,61 +132,22 @@ matrix list e(V_matrix), format(%9.4fc)
 
 
 * ==============================================================================
-* TFP: PENN WORLD TABLES (USA = 1 | PPP)
-synth TFP_PWT GDPcap IND TRADE HCI INV FDI LABOR_SHARE GROSS_K				 ///
-	  TFP_PWT(1985) TFP_PWT(1990), counit(1 2 3 4 5 9 10 11)				 ///
-	  xperiod(1985(1)1999) mspeperiod(1985(1)1999)							 ///
-	  nested allopt															 ///
-	  trunit(7) trperiod(2000) resultsperiod(1985(1)2018) unitnames(COUNTRY) ///
-	  keep(resout_TFP_PWT1_1) replace
-
-matrix list e(V_matrix)
-
-synth TFP_PWT GDPcap IND TRADE HCI INV FDI LABOR_SHARE GROSS_K,				 ///
-	  counit(1 2 3 4 5 9 10 11)												 ///
-	  xperiod(1985(1)1999) mspeperiod(1985(1)1999)							 ///
-	  nested allopt															 ///
-	  trunit(7) trperiod(2000) resultsperiod(1985(1)2018) unitnames(COUNTRY) ///
-	  keep(resout_TFP_PWT1_2) replace
-
-matrix list e(V_matrix)
-
-
-* TFP: PENN WORLD TABLES (2017 = 1 | PPP)
-synth TFP_PWT2 GDPcap IND TRADE HCI INV FDI LABOR_SHARE GROSS_K				 ///
-	  TFP_PWT2(1985) TFP_PWT2(1990), counit(1 2 3 4 5 9 10 11)				 ///
-	  xperiod(1985(1)1999) mspeperiod(1985(1)1999)							 ///
-	  nested allopt															 ///
-	  trunit(7) trperiod(2000) resultsperiod(1985(1)2018) unitnames(COUNTRY) ///
-	  keep(resout_TFP_PWT2_1) replace
-
-matrix list e(V_matrix)
-
-synth TFP_PWT2 GDPcap IND TRADE HCI INV FDI LABOR_SHARE GROSS_K,			 ///
-	  counit(1 2 3 4 5 9 10 11)												 ///
-	  xperiod(1985(1)1999) mspeperiod(1985(1)1999)							 ///
-	  nested allopt															 ///
-	  trunit(7) trperiod(2000) resultsperiod(1985(1)2018) unitnames(COUNTRY) ///
-	  keep(resout_TFP_PWT2_2) replace
-
-matrix list e(V_matrix)
-
-
 * TFP: THE CONFERENCE BOARD (% CHANGE)
 synth TFP_CB INV FDI HCI TRADE LABOR_SHARE									 ///
 	  TFP_CB(1995) TFP_CB(1999), 											 ///
 	  xperiod(1990(1)1999) mspeperiod(1990(1)1999)							 ///
 	  nested allopt															 ///
 	  trunit(7) trperiod(2000) resultsperiod(1990(1)2018) unitnames(COUNTRY) ///
-	  keep(resout_TFP_CB_1) replace
+	  keep(resout_TFP_1) replace
 
 matrix list e(V_matrix), format(%9.4fc)
+
 
 synth TFP_CB INV FDI HCI TRADE LABOR_SHARE,									 ///
 	  xperiod(1990(1)1999) mspeperiod(1990(1)1999)							 ///
 	  nested allopt															 ///
 	  trunit(7) trperiod(2000) resultsperiod(1990(1)2018) unitnames(COUNTRY) ///
-	  keep(resout_TFP_CB_2) replace
+	  keep(resout_TFP_2) replace
 
 matrix list e(V_matrix), format(%9.4fc)
 
@@ -309,92 +270,15 @@ twoway line GDP_GAP1 GDP_GAP2 YEAR,											 ///
 graph export Fig_GDP_GAP.pdf, replace
 
 
-* TFP: PENN WORLD TABES (USA = 1)
-* ------------------------------------------------------------------------------
-use resout_TFP_PWT1_1, clear 
-tsset _time
- 
-rename _Y_treated   TFP		// Original GDP series
-rename _Y_synthetic TFP1	// SCA 1
-
-merge 1:1 _time using resout_TFP_PWT1_2, nogenerate noreport
-
-rename _time        YEAR
-rename _Y_synthetic TFP2	// SCA 2
-
-label variable YEAR "Year"
-label variable TFP1 "Ecuador (Synthetic Model 1)"
-label variable TFP2 "Ecuador (Synthetic Model 2)"
-
-drop _Y_treated
-drop _W_Weight
-drop _Co_Number
-
-
-* PLOT ECUADOR VS BOTH SYNTHETIC ESTIMATIONS
-* TITLE: TFP (constant prices), PENN WORLD TABLE (2017 = 1)"
-twoway line TFP TFP1 TFP2 YEAR,												 ///
-	   xlabel(,grid labsize(small)) xlabel(1985(5)2020)						 ///
-	   ylabel(,grid labsize(small))	ylabel(0(0.1)1, format(%9.1f))			 ///
-	   xtitle("") xline(2000) ytitle("")									 ///
-	   color("black" "red" "green") lcolor(%75 %75 %75)						 ///
-	   legend(position(6) rows(1) size(vsmall))
-
-graph export Fig_TFP1_SCA.pdf, replace	 
-
-* TFP: PENN WORLD TABES (2017 = 1)
-* ------------------------------------------------------------------------------
-use resout_TFP_PWT2_1, clear 
-tsset _time
- 
-rename _Y_treated   TFP		// Original GDP series
-rename _Y_synthetic TFP1	// SCA 1
-
-merge 1:1 _time using resout_TFP_PWT2_2, nogenerate noreport
-
-rename _time        YEAR
-rename _Y_synthetic TFP2	// SCA 2
-
-label variable YEAR "Year"
-label variable TFP1 "Ecuador (Synthetic Model 1)"
-label variable TFP2 "Ecuador (Synthetic Model 2)"
-
-drop _Y_treated
-drop _W_Weight
-drop _Co_Number
-
-
-* PLOT ECUADOR VS BOTH SYNTHETIC ESTIMATIONS
-* TITLE: TFP (constant prices), PENN WORLD TABLE (2017 = 1)"
-twoway line TFP TFP1 TFP2 YEAR,												 ///
-	   xlabel(,grid labsize(small)) xlabel(1985(5)2020)						 ///
-	   ylabel(,grid labsize(small))	ylabel(0.7(0.1)1.2, format(%9.1f))		 ///
-	   xtitle("") xline(2000) ytitle("")									 ///
-	   color("black" "red" "green") lcolor(%75 %75 %75)						 ///
-	   legend(position(6) rows(1) size(vsmall))
-
-graph export Fig_TFP1_SCA.pdf, replace	 
-
-tsfilter hp TFP_c  = TFP,  trend(TFP_t)
-tsfilter hp TFP1_c = TFP1, trend(TFP1_t)
-tsfilter hp TFP2_c = TFP2, trend(TFP2_t)
-
-label variable TFP_c  "TFP (cyclical component)"
-label variable TFP1_c "Synthetic TFP (cyclical component, model 1)"
-label variable TFP2_c "Synthetic TFP (cyclical component, model 2)"
-
-summarize TFP_c TFP1_c TFP2_c if YEAR > 2000
-
-
 * TFP: THE CONFERENCE BOARD
 * ------------------------------------------------------------------------------
-use resout_TFP_CB_1, clear 
+use resout_TFP_1, clear 
 tsset _time
  
 rename _Y_treated   TFP			// Original TFP (PWT) series
 rename _Y_synthetic TFP1		// SCA 1
 
-merge 1:1 _time using resout_TFP_CB_2, nogenerate noreport
+merge 1:1 _time using resout_TFP_2, nogenerate noreport
 
 rename _time        YEAR
 rename _Y_synthetic TFP2		// SCA 2
